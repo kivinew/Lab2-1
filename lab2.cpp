@@ -13,7 +13,7 @@ public:
       int flag;
       Books();
       ~Books();
-      void newBooks();
+      void newBooks(int i);
       void viewBook();
 };
 Books::Books()
@@ -22,13 +22,12 @@ Books::Books()
 Books::~Books()
 	{
 	}
-void Books::newBooks()
+void Books::newBooks(int i)
     {
     fflush(stdin); 
     cout<<"\n";
     cout<<"Вводите латинницей"<<endl; 
-    cout<<"Введите ID: "<<endl;
-    cin>>ID;   
+    ID=i;   
     fflush(stdin); 
     cout<<"Введите название книги: "<<endl;
     getline(cin,nameBook);
@@ -38,6 +37,7 @@ void Books::newBooks()
     cin>>flag;
     cout<<"\n";
     }
+    
 void Books::viewBook()
     {
     cout<<"\n";
@@ -51,7 +51,7 @@ void Books::viewBook()
 
 void menu(Books *p);                                        
 void showmenu();                                   
-void addBook(Books *p);
+void addBook(Books *p,int i);
 void viewBook(Books *p,int i);
 void viewBook(Books *p,int i,int f);
 
@@ -65,9 +65,9 @@ int main()
     return EXIT_SUCCESS;
 }
 
-void addBook(Books *p)
+void addBook(Books *p,int i)
 {
-    p->newBooks();
+    p->newBooks(i);
 
 }
 
@@ -114,7 +114,7 @@ void menu(Books *p)
 			break;
 		case '2':
 		   i++;
-           addBook(p);
+           addBook(p,i);
            	p++;
 			break;
       case '3':
