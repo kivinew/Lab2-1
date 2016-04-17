@@ -1,21 +1,22 @@
 #include <cstdlib>
 #include <iostream>
-#include<locale.h>
+#include <locale.h>
 
 using namespace std;
-
+// Билиотечные карточки книг
 class Books
   {
         string nameBook;
         string nameAutor;
   public:
         int ID;
-        int flag;
+        int flag;                                                    //Флаг наличия на руках или в библиотеке
         Books();
         ~Books();
-        void newBooks(int i);
+        void newBooks(int currentNumberBook);
         void viewBook();
   };
+
 
 Books::Books()
 	{
@@ -24,12 +25,12 @@ Books::~Books()
 	{
 	}
 
-void Books::newBooks(int i)
+void Books::newBooks(int currentNumberBook)
     {
     fflush(stdin); 
     cout<<"\n";
     cout<<"Вводите латинницей"<<endl; 
-    ID=i;   
+    ID=currentNumberBook;   
     fflush(stdin); 
     cout<<"Введите название книги: "<<endl;
     getline(cin,nameBook);
@@ -51,12 +52,12 @@ void Books::viewBook()
 
 
 
-void menu(Books *p);                                        
+void menu(Books *pointerOnFirstBook);                                        
 void showmenu();                                   
-void addBook(Books *p,int i);
-void viewBook(Books *p,int i);
-void viewBook(Books *p,int i,int f);
-void viewBook(Books *p,int i,float f);
+void addBook(Books *currentPointer,int currentNumberBook);
+void viewBook(Books *pointerOnFirstBook,int tmpSumAllBooks);
+void viewBook(Books *pointerOnFirstBook,int tmpSumAllBooks,int f);
+void viewBook(Books *pointerOnFirstBook,int tmpSumAllBooks,float f);
 
 
 int main()
@@ -68,65 +69,66 @@ int main()
       return EXIT_SUCCESS;
   }
 
-void addBook(Books *p,int i)
+void addBook(Books *currentPointer,int currentNumberBook)
   {
-      p->newBooks(i);
+      currentPointer->newBooks(currentNumberBook);
 
   }
-void addBook(Books *p,int i,int f)
+void addBook(Books *currentPointer,int tmpSumAllBooks,int f)
   {
       int tmp=0;
       cout<<"Введите ID книги статус которой хотите изменить: "<<endl;
       cin>>tmp;
-      for(int j=0;j<i;j++)
+      for(int j=0;j<tmpSumAllBooks;j++)
       {
-       if(p->ID==tmp)
+       if(currentPointer->ID==tmp)
           {
           cout<<"Укажите наличие книги в билиотеке 1- в наличие, 0 - отсуствует: "<<endl;
-          cin>>p->flag;
+          cin>>currentPointer->flag;
           }
-        p++;  
+        currentPointer++;  
       }
   }
 
-void viewBook(Books *p,int i)
+void viewBook(Books *pointerOnFirstBook,int tmpSumAllBooks)
   {
-  	for(int j=0;j<i;j++)
+  	for(int j=0;j<tmpSumAllBooks;j++)
       {
-      p->viewBook();
-      p++;
+      pointerOnFirstBook->viewBook();
+      pointerOnFirstBook++;
       }
   }
-void viewBook(Books *p,int i,int f)
+void viewBook(Books *pointerOnFirstBook,int tmpSumAllBooks,int f)
   {
-    for(int j=0;j<i;j++)
+    for(int j=0;j<tmpSumAllBooks;j++)
       {
-       if(p->flag==1)
+       if(pointerOnFirstBook->flag==1)
         {
-        p->viewBook();
+        pointerOnFirstBook->viewBook();
         }
-        p++;  
+        pointerOnFirstBook++;  
       }
   }
-void viewBook(Books *p,int i,float f)
+void viewBook(Books *pointerOnFirstBook,int tmpSumAllBooks,float f)
   {
-    for(int j=0;j<i;j++)
+
+    for(int j=0;j<tmpSumAllBooks;j++)
       {
-       if(p->flag==0)
+       if(pointerOnFirstBook->flag==0)
         {
-        p->viewBook();
+        pointerOnFirstBook->viewBook();
         }
-        p++;  
+        pointerOnFirstBook++;  
       }
   }
 
-void menu(Books *p)
+void menu(Books *pointerOnFirstBook)
   {
-  	int i=0;
-    int flag1=0;
-    float flag0=0.;
-  	Books *view;
-  	view=p;
+  	int tmpSumAllBooks=0;
+    int flag1=0;                                                      // Просто флаг для перегрузки функции viewBook
+    float flag0=0.;                                                   // Просто флаг для перегрузки функции viewBook
+  	Books *currentPointer;
+  	currentPointer=pointerOnFirstBook;
 
   	char ch = 0;
   	while (ch != '0')
@@ -137,21 +139,21 @@ void menu(Books *p)
   		switch (ch)
   		{
   		case '1':
-  			viewBook(view,i);
+  			viewBook(pointerOnFirstBook,tmpSumAllBooks);
   			break;
   		case '2':
-  		  i++;
-        addBook(p,i);
-        p++;
+  		  tmpSumAllBooks++;
+        addBook(currentPointer,tmpSumAllBooks);
+        currentPointer++;
   			break;
       case '3':
-        viewBook(view,i,flag1);
+        viewBook(pointerOnFirstBook,tmpSumAllBooks,flag1);
         break;  
       case '4':
-        viewBook(view,i,flag0);
+        viewBook(pointerOnFirstBook,tmpSumAllBooks,flag0);
         break; 
       case '5':
-        addBook(view,i,flag1);
+        addBook(pointerOnFirstBook,tmpSumAllBooks,flag1);
         break;       			
   		case '0':
   			cout<<"\nGoodbay!\n\n";
