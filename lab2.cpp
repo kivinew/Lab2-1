@@ -37,7 +37,7 @@ void Books::newBooks(int i)
     cin>>flag;
     cout<<"\n";
     }
-    
+
 void Books::viewBook()
     {
     cout<<"\n";
@@ -54,6 +54,7 @@ void showmenu();
 void addBook(Books *p,int i);
 void viewBook(Books *p,int i);
 void viewBook(Books *p,int i,int f);
+void viewBook(Books *p,int i,float f);
 
 
 int main()
@@ -93,11 +94,25 @@ void viewBook(Books *p,int i,int f)
       p++;  
     }
 }
+void viewBook(Books *p,int i,float f)
+{
+  int j;
+
+  for(j=0;j<i;j++)
+    {
+     if(p->flag==0)
+      {
+      p->viewBook();
+      }
+      p++;  
+    }
+}
 
 void menu(Books *p)
 {
 	int i=0;
-  int f=0;
+  int flag1=0;
+  float flag0=0.;
 	Books *view;
 	view=p;
 
@@ -118,10 +133,10 @@ void menu(Books *p)
            	p++;
 			break;
       case '3':
-  viewBook(view,i,f);
+  viewBook(view,i,flag1);
   break;  
     case '4':
-viewBook(view,i);
+viewBook(view,i,flag0);
 break;      			
 		case '0':
 			cout<<"\nGoodbay!\n\n";
