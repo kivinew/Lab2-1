@@ -3,7 +3,7 @@
 #include <locale.h>
 
 using namespace std;
-// Билиотечные карточки книг
+// Библиотечные карточки книг
 class Books
   {
         string nameBook;
@@ -29,14 +29,14 @@ void Books::newBooks(int currentNumberBook)
     {
     fflush(stdin); 
     cout<<"\n";
-    cout<<"Вводите латинницей"<<endl; 
+    cout<<"Вводите латиницей"<<endl; 
     ID=currentNumberBook;   
     fflush(stdin); 
     cout<<"Введите название книги: "<<endl;
     getline(cin,nameBook);
     cout<<"Введите имя автора:     "<<endl;
     getline(cin,nameAutor); 
-    cout<<"Укажите наличие книги в билиотеке 1- в наличие, 0 - отсуствует: "<<endl;
+    cout<<"Укажите наличие книги в билиотеке 1- в наличии, 0 - отсутствует: "<<endl;
     cin>>flag;
     cout<<"\n";
     }
@@ -46,7 +46,7 @@ void Books::viewBook()
       cout<<"ID:"<<ID<<endl;  
       cout<<"Название книги: "<<nameBook<<endl;
       cout<<"Имя автора:     "<<nameAutor<<endl;
-      cout<<"Наличие книги в билиотеке 1- в налчие, 0 - отсуствует: "<<flag<<endl;
+      cout<<"Наличие книги в билиотеке 1- в наличии, 0 - отсутствует: "<<flag<<endl;
       cout<<"\n";
   }  
 
@@ -83,7 +83,7 @@ void addBook(Books *currentPointer,int tmpSumAllBooks,int f)          //Изме
       {
        if(currentPointer->ID==tmp)
           {
-          cout<<"Укажите наличие книги в билиотеке 1- в наличие, 0 - отсуствует: "<<endl;
+          cout<<"Укажите наличие книги в билиотеке 1- в наличии, 0 - отсутствует: "<<endl;
           cin>>currentPointer->flag;
           }
         currentPointer++;  
@@ -169,8 +169,8 @@ void showmenu()
     cout<<"Меню:\n";
     cout<<"Введите 1 чтобы вывести все карточки на экран \n";
     cout<<"Введите 2 создать новую карточку\n";
-    cout<<"Введите 3 чтобы вывести на экран все книги в наличие\n";
-    cout<<"Введите 4 чтобы вывести на экран книги отсутсвующие\n";
+    cout<<"Введите 3 чтобы вывести на экран все книги в наличии\n";
+    cout<<"Введите 4 чтобы вывести на экран книги отсутствующие\n";
     cout<<"Введите 5 чтобы изменить статус книги\n";
     cout<<"Введите 0 чтобы выйти\n";
   }
